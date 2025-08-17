@@ -1,0 +1,13 @@
+html {
+  scroll-behavior: smooth;
+}
+@import "tailwindcss";
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* moves half since we duplicated array */
+}
+
+.animate-scroll-left {
+  animation: scroll-left 20s linear infinite;
+}
