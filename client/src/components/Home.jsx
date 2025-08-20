@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Navbar from './navbar'
+import Navbar from '../components/navbar'
 import { motion } from 'framer-motion'
 
 
