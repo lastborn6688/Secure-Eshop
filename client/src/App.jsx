@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Layout from "./components/Layout";
 import Home from "./components/Home";
 import Brands from "./components/Brands";
 import Joyroom from "./pages/JoyroomPage";
@@ -40,7 +39,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/">
           <Route index element={<Home />} />
           <Route path="brands" element={<Brands />} />
           <Route path="about" element={<About />} />

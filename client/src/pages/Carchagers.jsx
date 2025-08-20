@@ -3,7 +3,7 @@ import { useState } from "react";
 const Carchargers = ({ isAdmin }) => {
   const [addProduct, setAddProduct] = useState(false);
   const [products, setProducts] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
+  const [editIndex, setEditIndex] = useState(null);hom 
   const [formData, setFormData] = useState({ name: "", des: "", price: "", src: "" });
 
   const handleEdit = (index) => {
