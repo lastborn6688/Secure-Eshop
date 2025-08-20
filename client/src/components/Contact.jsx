@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { FaWhatsapp, FaInstagram, FaTiktok, FaEnvelope } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 

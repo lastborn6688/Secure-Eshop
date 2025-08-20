@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { FaBars, FaTimes, FaArrowDown } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
