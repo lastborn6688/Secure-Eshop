@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../images/Logo.jpg";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
   const [mobileProjectsOpen, setMobileProjectsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,19 +22,40 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
+  // Detect scroll for background
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="h-16 lg:h-20 w-full flex items-center fixed top-0 left-0 z-50 justify-between px-4 sm:px-6 md:px-12 lg:px-20 bg-white shadow">
+    <nav
+      className={`h-16 lg:h-20 w-full flex items-center fixed top-0 left-0 z-50 justify-between px-4 sm:px-6 md:px-12 lg:px-20 transition-colors duration-500 ${
+        scrolled ? "bg-white shadow" : "bg-transparent"
+      }`}
+    >
       {/* Logo */}
       <div className="flex items-center">
         <img
           src={logo}
           alt="Logo"
-          className="h-12 w-12 lg:h-16 lg:w-16 rounded-full object-cover"
+          className="h-16 w-16 lg:h-20 lg:w-20 rounded-full object-contain"
         />
       </div>
 
       {/* Desktop Links */}
-      <div className="hidden md:flex gap-6 text-base lg:text-lg font-medium text-black relative items-center">
+      <div
+        className={`hidden md:flex gap-6 text-base lg:text-lg font-medium relative items-center ${
+          scrolled ? "text-black" : "text-white"
+        }`}
+      >
         <Link
           to="/"
           className={`hover:underline ${
@@ -116,7 +138,11 @@ const Navbar = () => {
       <div className="hidden md:flex">
         <Link
           to="/contact"
-          className="px-5 py-2 bg-[rgb(59,118,174)] text-white rounded-xl hover:bg-[rgb(72,117,160)] text-sm lg:text-base"
+          className={`px-5 py-2 rounded-xl text-sm lg:text-base transition-colors ${
+            scrolled
+              ? "bg-[rgb(59,118,174)] text-white hover:bg-[rgb(72,117,160)]"
+              : "bg-white text-[rgb(59,118,174)] hover:bg-gray-200"
+          }`}
         >
           Contact Us
         </Link>
@@ -127,13 +153,13 @@ const Navbar = () => {
         {menuOpen ? (
           <FaTimes
             size={24}
-            className="cursor-pointer text-[rgb(59,118,174)]"
+            className={`cursor-pointer ${scrolled ? "text-[rgb(59,118,174)]" : "text-white"}`}
             onClick={() => setMenuOpen(false)}
           />
         ) : (
           <FaBars
             size={24}
-            className="cursor-pointer text-[rgb(59,118,174)]"
+            className={`cursor-pointer ${scrolled ? "text-[rgb(59,118,174)]" : "text-white"}`}
             onClick={() => setMenuOpen(true)}
           />
         )}

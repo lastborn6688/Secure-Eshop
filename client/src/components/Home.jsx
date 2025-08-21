@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import Navbar from "../components/navbar";
 import hero from "../images/hero image.png";
 import Join from "../components/Join";
+import Associates from "./Associates";
+import Vists from "./Vists";
 
 const Home = () => {
   return (
@@ -53,6 +55,8 @@ const Home = () => {
 
       {/* Join Section */}
       <Join />
+      <Associates />
+      <Vists />
     </div>
   );
 };
