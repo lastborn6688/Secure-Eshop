@@ -26,14 +26,14 @@ const Vists = () => {
   }, []);
 
   return (
-    <div className="w-full overflow-hidden bg-white text-[rgb(72,117,160)] py-10">
+    <div className="w-full overflow-hidden bg-[rgb(3,16,20)] text-[rgb(241,244,246)] py-10">
       {/* Text section */}
       <div className="text-center px-4 mb-8">
-        <h1 className="text-xl lg:text-2xl font-semibold mb-2">
+        <h1 className="text-xl lg:text-3xl font-semibold mb-2">
           When you buy from us, you are sure to be buying the original —
           not a copy.
         </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-gray-100 max-w-2xl text-xl mx-auto">
           Beyond partnerships, we verified our suppliers to
           guarantee authenticity, trust, and a reputable market presence.
         </p>

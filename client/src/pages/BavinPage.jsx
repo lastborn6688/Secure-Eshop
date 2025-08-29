@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Bavin = ({ isAdmin }) => {
   const [addProduct, setAddProduct] = useState(false);
   const [products, setProducts] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [formData, setFormData] = useState({ name: "", des: "", price: "", src: "" });
+
+
+   // ✅ Fetch products when component loads
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/products");
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const handleEdit = (index) => {
     setEditIndex(index);
@@ -40,16 +55,53 @@ const Bavin = ({ isAdmin }) => {
     setProducts(updatedProducts);
   };
 
-  const handleAddProduct = (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.des || !formData.price || !formData.src) {
-      alert("Please fill all fields and upload an image.");
-      return;
+  // const handleAddProduct = (e) => {
+  //   e.preventDefault();
+  //   if (!formData.name || !formData.des || !formData.price || !formData.src) {
+  //     alert("Please fill all fields and upload an image.");
+  //     return;
+  //   }
+  //   setProducts([...products, formData]);
+  //   setFormData({ name: "", des: "", price: "", src: "" });
+  //   setAddProduct(false);
+  // };
+
+  const handleAddProduct = async (e) => {
+  e.preventDefault();
+
+  if (!formData.name || !formData.des || !formData.price || !formData.src) {
+    alert("Please fill all fields and upload an image.");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to add product");
     }
-    setProducts([...products, formData]);
+
+    const newProduct = await res.json();
+
+    // ✅ Update UI with DB data
+    setProducts((prev) => [...prev, newProduct]);
     setFormData({ name: "", des: "", price: "", src: "" });
     setAddProduct(false);
-  };
+  } catch (err) {
+    console.error(err);
+    alert("Error adding product.");
+  }
+};
+
+
+
+
 
   return (
     <div className="p-6">
@@ -110,7 +162,7 @@ const Bavin = ({ isAdmin }) => {
 
       <div
         name="bavinProductPage"
-        className="bg-[rgb(217,224,231)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6 gap-3 p-4"
+        className="bg-[rgb(217,224,231)] grid grid-cols-1 w-auto sm:grid-cols-2 lg:grid-cols-4 mt-6 gap-3 p-4"
       >
         {products.length === 0 ? (
           <p className="text-center text-gray-600 col-span-full">No products yet.</p>

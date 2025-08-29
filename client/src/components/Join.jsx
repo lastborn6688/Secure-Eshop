@@ -4,7 +4,7 @@ import happy from "../images/happy_customers.png";
 
 const Join = () => {
   return (
-    <div className="min-h-[80vh] flex flex-col lg:flex-row items-center gap-10 justify-center bg-gradient-to-b from-[rgb(3,16,20)] to-[rgb(41,78,114)] text-white w-full px-6 py-10">
+    <div className="min-h-[80vh] flex flex-col lg:flex-row items-center gap-10 justify-center bg-[rgb(3,16,20)] text-white w-full px-6 py-10">
       
       {/* Text Section */}
       <motion.div

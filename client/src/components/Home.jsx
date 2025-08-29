@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import Navbar from "../components/navbar";
-import hero from "../images/hero image.png";
+import hero from "../images/hero.jpg";
 import Join from "../components/Join";
 import Associates from "./Associates";
 import Vists from "./Vists";
+import Achievments from "./Achievments";
+import Footer from "./Footer";
 
 const Home = () => {
   return (
@@ -32,11 +34,11 @@ const Home = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.7 }}
           >
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold leading-snug">
-              More than accessories <br />Secure & J delivers trust, innovation, and
-              lasting value
+            <h1 className="text-[rgb(83,164,240)] text-3xl sm:text-4xl md:text-5xl font-semibold leading-snug">
+              More than accessories <br />
+              Secure & J delivers trust, innovation, and lasting value
             </h1>
-            <p className="text-gray-300 text-base sm:text-lg md:text-xl lg:text-2xl font-medium mt-4 max-w-2xl">
+            <p className="text-gray-400 text-base sm:text-lg md:text-xl lg:text-2xl font-medium mt-4 max-w-2xl">
               Stay charged, connected, and stress-free. Whether it’s fast and
               durable chargers, power banks, solar gear, consoles, or
               headphones—we’ve got the right tools to keep your gadgets working
@@ -57,6 +59,8 @@ const Home = () => {
       <Join />
       <Associates />
       <Vists />
+      <Achievments />
+      <Footer />
     </div>
   );
 };

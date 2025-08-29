@@ -4,7 +4,7 @@ import shop from "../images/shop.png";
 
 const Associates = () => {
   return (
-    <div className="min-h-[80vh] flex flex-col lg:flex-row items-center gap-10 justify-center bg-gradient-to-b from-[rgb(41,78,114)] to-[rgb(102,179,165)] text-white w-full px-6 py-10">
+    <div className="min-h-[80vh] flex flex-col lg:flex-row items-center gap-10 justify-center bg-[rgb(3,16,20)] text-white w-full px-6 py-10">
       
       {/* Image with motion */}
       <motion.img
@@ -18,7 +18,7 @@ const Associates = () => {
 
       {/* Text with motion */}
       <motion.div
-        className="w-full lg:w-2/5 flex flex-col items-start justify-center text-2xl lg:text-3xl font-semibold"
+        className="w-full lg:w-2/5 flex flex-col text-white items-start justify-center text-2xl lg:text-3xl font-semibold"
         initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}

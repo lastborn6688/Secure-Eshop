@@ -1,10 +1,17 @@
 import { useState } from "react";
+import joyroom_letter from "../images/joyroom_letter.jpg";
+import joyroom_letter2 from "../images/joyroom_letter2.jpg";
 
 const Joyroom = ({ isAdmin }) => {
   const [addProduct, setAddProduct] = useState(false);
   const [products, setProducts] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
-  const [formData, setFormData] = useState({ name: "", des: "", price: "", src: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    des: "",
+    price: "",
+    src: "",
+  });
 
   const handleEdit = (index) => {
     setEditIndex(index);
@@ -53,6 +60,18 @@ const Joyroom = ({ isAdmin }) => {
 
   return (
     <div className="p-6">
+      <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
+        <img
+          src={joyroom_letter}
+          alt="Joyroom Letter 1"
+          className="w-80 h-56 sm:w-[28rem] sm:h-[28rem] object-contain mb-4 rounded-lg border shadow max-w-full"
+        />
+        <img
+          src={joyroom_letter2}
+          alt="Joyroom Letter 2"
+          className="w-80 h-56 sm:w-[28rem] sm:h-[28rem] object-contain mb-4 rounded-lg border shadow max-w-full"
+        />
+      </div>
       {/* Show Add Product button only if admin */}
       {isAdmin && (
         <button
@@ -89,20 +108,31 @@ const Joyroom = ({ isAdmin }) => {
             className="border p-2 rounded"
           />
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 font-bold">₦</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 font-bold">
+              ₦
+            </span>
             <input
               type="number"
               value={formData.price}
-              onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, price: e.target.value })
+              }
               placeholder="Price"
               className="border p-2 pl-7 rounded w-full"
             />
           </div>
 
           {formData.src && (
-            <img src={formData.src} alt="preview" className="w-full h-40 object-cover rounded" />
+            <img
+              src={formData.src}
+              alt="preview"
+              className="w-full h-40 object-cover rounded"
+            />
           )}
-          <button type="submit" className="bg-green-500 text-white px-3 py-2 rounded">
+          <button
+            type="submit"
+            className="bg-green-500 text-white px-3 py-2 rounded"
+          >
             Add Product
           </button>
         </form>
@@ -113,7 +143,9 @@ const Joyroom = ({ isAdmin }) => {
         className="bg-[rgb(217,224,231)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6 gap-3 p-4"
       >
         {products.length === 0 ? (
-          <p className="text-center text-gray-600 col-span-full">No products yet.</p>
+          <p className="text-center text-gray-600 col-span-full">
+            No products yet.
+          </p>
         ) : (
           products.map((product, index) => (
             <div
@@ -126,27 +158,39 @@ const Joyroom = ({ isAdmin }) => {
                     <input
                       type="text"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       className="border p-2 rounded"
                     />
                     <textarea
                       value={formData.des}
-                      onChange={(e) => setFormData({ ...formData, des: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, des: e.target.value })
+                      }
                       className="border p-2 rounded"
                     />
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 font-bold">₦</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 font-bold">
+                        ₦
+                      </span>
                       <input
                         type="number"
                         value={formData.price}
-                        onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, price: e.target.value })
+                        }
                         className="border p-2 pl-7 rounded w-full"
                       />
                     </div>
 
                     <input type="file" onChange={handleFileChange} />
                     {formData.src && (
-                      <img src={formData.src} alt="preview" className="w-full h-40 object-cover rounded" />
+                      <img
+                        src={formData.src}
+                        alt="preview"
+                        className="w-full h-40 object-cover rounded"
+                      />
                     )}
                     <div className="flex gap-2 mt-2">
                       <button
@@ -166,8 +210,14 @@ const Joyroom = ({ isAdmin }) => {
                 )
               ) : (
                 <>
-                  <img src={product.src} alt={product.name} className="w-full h-48 object-cover rounded-md" />
-                  <h2 className="mt-4 text-xl font-semibold text-gray-800">{product.name}</h2>
+                  <img
+                    src={product.src}
+                    alt={product.name}
+                    className="w-full h-48 object-cover rounded-md"
+                  />
+                  <h2 className="mt-4 text-xl font-semibold text-gray-800">
+                    {product.name}
+                  </h2>
                   <p className="mt-2 text-gray-700">{product.des}</p>
                   <p className="mt-2 text-lg font-bold text-green-600">
                     ₦{Number(product.price).toLocaleString()}
