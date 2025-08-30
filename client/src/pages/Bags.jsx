@@ -1,25 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const Bavin = ({ isAdmin }) => {
+const Bags = ({ isAdmin }) => {
   const [addProduct, setAddProduct] = useState(false);
   const [products, setProducts] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [formData, setFormData] = useState({ name: "", des: "", price: "", src: "" });
-
-
-   // ✅ Fetch products when component loads
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch("https://secure-shop-server-1.onrender.com/api/products");
-        const data = await res.json();
-        setProducts(data);
-      } catch (err) {
-        console.error("Error fetching products:", err);
-      }
-    };
-    fetchProducts();
-  }, []);
 
   const handleEdit = (index) => {
     setEditIndex(index);
@@ -55,53 +40,16 @@ const Bavin = ({ isAdmin }) => {
     setProducts(updatedProducts);
   };
 
-  // const handleAddProduct = (e) => {
-  //   e.preventDefault();
-  //   if (!formData.name || !formData.des || !formData.price || !formData.src) {
-  //     alert("Please fill all fields and upload an image.");
-  //     return;
-  //   }
-  //   setProducts([...products, formData]);
-  //   setFormData({ name: "", des: "", price: "", src: "" });
-  //   setAddProduct(false);
-  // };
-
-  const handleAddProduct = async (e) => {
-  e.preventDefault();
-
-  if (!formData.name || !formData.des || !formData.price || !formData.src) {
-    alert("Please fill all fields and upload an image.");
-    return;
-  }
-
-  try {
-    const res = await fetch("https://secure-shop-server-1.onrender.com/api/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to add product");
+  const handleAddProduct = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.des || !formData.price || !formData.src) {
+      alert("Please fill all fields and upload an image.");
+      return;
     }
-
-    const newProduct = await res.json();
-
-    // ✅ Update UI with DB data
-    setProducts((prev) => [...prev, newProduct]);
+    setProducts([...products, formData]);
     setFormData({ name: "", des: "", price: "", src: "" });
     setAddProduct(false);
-  } catch (err) {
-    console.error(err);
-    alert("Error adding product.");
-  }
-};
-
-
-
-
+  };
 
   return (
     <div className="p-6">
@@ -161,8 +109,8 @@ const Bavin = ({ isAdmin }) => {
       )}
 
       <div
-        name="bavinProductPage"
-        className="bg-[rgb(217,224,231)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6 gap-6 p-6 justify-items-center"
+        name="bags"
+        className="bg-[rgb(217,224,231)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6 gap-3 p-4"
       >
         {products.length === 0 ? (
           <p className="text-center text-gray-600 col-span-full">No products yet.</p>
@@ -170,8 +118,7 @@ const Bavin = ({ isAdmin }) => {
           products.map((product, index) => (
             <div
               key={index}
-              className="flex flex-col bg-white rounded-xl shadow-lg p-5 w-full max-w-xs min-h-[420px] transition-all duration-200 hover:shadow-xl"
-              style={{alignItems: 'stretch'}}
+              className="flex flex-col items-center justify-center bg-white rounded-lg shadow-md p-6 w-[370px] h-auto"
             >
               {editIndex === index ? (
                 isAdmin && (
@@ -219,25 +166,25 @@ const Bavin = ({ isAdmin }) => {
                 )
               ) : (
                 <>
-                  <img src={product.src} alt={product.name} className="w-full h-44 object-cover rounded-lg mb-2 border" />
-                  <h2 className="mt-2 text-lg font-bold text-[rgb(72,117,160)] truncate">{product.name}</h2>
-                  <p className="mt-1 text-sm text-gray-600 line-clamp-3 min-h-[60px]">{product.des}</p>
-                  <p className="mt-2 text-base font-bold text-green-600">
+                  <img src={product.src} alt={product.name} className="w-full h-48 object-cover rounded-md" />
+                  <h2 className="mt-4 text-xl font-semibold text-gray-800">{product.name}</h2>
+                  <p className="mt-2 text-gray-700">{product.des}</p>
+                  <p className="mt-2 text-lg font-bold text-green-600">
                     ₦{Number(product.price).toLocaleString()}
                   </p>
 
                   {/* Show Edit/Delete only for Admin */}
                   {isAdmin && (
-                    <div className="flex gap-2 mt-4 justify-center">
+                    <div className="flex gap-2 mt-4">
                       <button
                         onClick={() => handleEdit(index)}
-                        className="px-4 py-1 bg-black text-white rounded hover:bg-gray-800 transition"
+                        className="p-2 bg-black text-white mt-3 rounded"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(index)}
-                        className="px-4 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                        className="p-2 bg-red-600 text-white mt-3 rounded"
                       >
                         Delete
                       </button>
@@ -253,4 +200,4 @@ const Bavin = ({ isAdmin }) => {
   );
 };
 
-export default Bavin;
+export default Bags;

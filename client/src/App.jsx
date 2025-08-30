@@ -24,6 +24,7 @@ import Earbuds from "./pages/Earbuds";
 import Cables from "./pages/Cables";
 import AdminLogin from "./pages/AdminLogin";
 import Client from "./components/Client";
+import Bags from "./pages/Bags";
 
 const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -51,24 +52,49 @@ const App = () => {
             path="bavinProductPage"
             element={<BavinPage isAdmin={isAdmin} />}
           />
-          <Route path="joyroomProductPage" element={<Joyroom isAdmin={isAdmin}/>} />
-          <Route path="ldnioProductPage" element={<Ldnio isAdmin={isAdmin}/>} />
-          <Route path="usamsProductPage" element={<Usams isAdmin={isAdmin}/>} />
-          <Route path="wakomeProductPage" element={<Wakome isAdmin={isAdmin}/>} />
-          <Route path="wiwuProductPage" element={<Wiwu isAdmin={isAdmin}/>} />
-          <Route path="oraimoProductPage" element={<Oraimo isAdmin={isAdmin}/>} />
-          <Route path="remaxProductPage" element={<Remax isAdmin={isAdmin}/>} />
+          <Route
+            path="joyroomProductPage"
+            element={<Joyroom isAdmin={isAdmin} />}
+          />
+          <Route
+            path="ldnioProductPage"
+            element={<Ldnio isAdmin={isAdmin} />}
+          />
+          <Route
+            path="usamsProductPage"
+            element={<Usams isAdmin={isAdmin} />}
+          />
+          <Route
+            path="wakomeProductPage"
+            element={<Wakome isAdmin={isAdmin} />}
+          />
+          <Route path="wiwuProductPage" element={<Wiwu isAdmin={isAdmin} />} />
+          <Route
+            path="oraimoProductPage"
+            element={<Oraimo isAdmin={isAdmin} />}
+          />
+          <Route
+            path="remaxProductPage"
+            element={<Remax isAdmin={isAdmin} />}
+          />
 
           {/* Other categories */}
-          <Route path="beautifiers" element={<Beautifiers isAdmin={isAdmin}/>} />
-          <Route path="carchagers" element={<Carchagers isAdmin={isAdmin}/>} />
-          <Route path="chargers" element={<Chargers isAdmin={isAdmin}/>} />
-          <Route path="powerbank" element={<Powerbank isAdmin={isAdmin}/>} />
-          <Route path="powerStation" element={<PowerStation isAdmin={isAdmin}/>} />
-          <Route path="stands" element={<Stands isAdmin={isAdmin}/>} />
-          <Route path="headset" element={<Headset isAdmin={isAdmin}/>} />
-          <Route path="earbuds" element={<Earbuds isAdmin={isAdmin}/>} />
-          <Route path="cables" element={<Cables isAdmin={isAdmin}/>} />
+          <Route
+            path="beautifiers"
+            element={<Beautifiers isAdmin={isAdmin} />}
+          />
+          <Route path="carchagers" element={<Carchagers isAdmin={isAdmin} />} />
+          <Route path="chargers" element={<Chargers isAdmin={isAdmin} />} />
+          <Route path="powerbank" element={<Powerbank isAdmin={isAdmin} />} />
+          <Route
+            path="powerStation"
+            element={<PowerStation isAdmin={isAdmin} />}
+          />
+          <Route path="stands" element={<Stands isAdmin={isAdmin} />} />
+          <Route path="headset" element={<Headset isAdmin={isAdmin} />} />
+          <Route path="earbuds" element={<Earbuds isAdmin={isAdmin} />} />
+          <Route path="cables" element={<Cables isAdmin={isAdmin} />} />
+          <Route path="bags" element={<Bags isAdmin={isAdmin} />} />
         </Route>
 
         {/* Login route */}
